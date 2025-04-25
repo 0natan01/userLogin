@@ -6,6 +6,8 @@ import com.example.loginPessoal.infrastructure.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UsuarioService {
@@ -33,5 +35,13 @@ public class UsuarioService {
 
     public boolean verificaEmailExistente(String email){
         return usuarioRepository.existsByEmail(email);
+    }
+
+    public List<Usuario> listarUsuarios(){
+        return usuarioRepository.findAll();
+    }
+
+    public void deletarUsuario(Long id){
+         usuarioRepository.deleteById(id);
     }
 }

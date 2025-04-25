@@ -4,10 +4,9 @@ import com.example.loginPessoal.business.UsuarioService;
 import com.example.loginPessoal.infrastructure.model.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
@@ -18,5 +17,15 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<Usuario> salvarUsuario(@RequestBody Usuario usuario){
         return ResponseEntity.ok(usuarioService.salvarUsuario(usuario)) ;
+    }
+
+    @GetMapping
+    public List<Usuario> listarUsuarios(){
+        return usuarioService.listarUsuarios();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletarUsuario(@PathVariable Long id){
+        usuarioService.deletarUsuario(id);
     }
 }
